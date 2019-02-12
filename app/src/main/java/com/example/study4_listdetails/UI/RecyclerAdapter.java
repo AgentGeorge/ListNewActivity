@@ -1,6 +1,7 @@
-package com.example.study4_listdetails;
+package com.example.study4_listdetails.UI;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,26 +10,30 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.example.study4_listdetails.Core.DbHelper;
+import com.example.study4_listdetails.R;
 
-import static android.support.v4.content.ContextCompat.startActivity;
+import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private ArrayList<DbHelper.Record> results;
     private Activity activity;
+    private LayoutInflater mInflater;
 
-    public RecyclerAdapter(Activity activity) {
+    public RecyclerAdapter(Context context) {
         DbHelper dbHelper = new DbHelper();
-        this.results = dbHelper.SimpleModels();
+        this.mInflater = LayoutInflater.from(context);
+        this.results = dbHelper.getSimpleModels();
         this.activity = activity;
     }
 
     //Создание новых View и ViewHolder элемента списка, которые впоследствии могут переиспользоваться.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, viewGroup, false);
-        return new ViewHolder(v);
+        View view = mInflater.inflate(R.layout.list_item, viewGroup, false);
+        return new ViewHolder(view);
     }
 
     //Заполнение виджетов View данными из элемента списка с номером i

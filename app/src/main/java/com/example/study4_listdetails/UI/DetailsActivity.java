@@ -1,4 +1,4 @@
-package com.example.study4_listdetails;
+package com.example.study4_listdetails.UI;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.study4_listdetails.R;
 
 public class DetailsActivity extends AppCompatActivity {
 
