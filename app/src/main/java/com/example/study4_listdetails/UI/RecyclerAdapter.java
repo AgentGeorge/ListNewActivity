@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private ArrayList<Car> cars;
-    ItemClickListener mClickListener;
+    private ItemClickListener mClickListener;
     private LayoutInflater mInflater;
 
     public RecyclerAdapter(Context context) {
@@ -71,7 +71,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         @Override
         public void onClick(View itemView) {
             if (mClickListener != null) {
-                mClickListener.onItemClick(itemView, getAdapterPosition());
+                mClickListener.onItemClick(getAdapterPosition());
             }
         }
 
@@ -82,7 +82,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(int position);
     }
 
 

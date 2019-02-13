@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.I
     }
 
     @Override
-    public void onItemClick(View view, int position) {
+    public void onItemClick(int position) {
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra("position", position);
 
