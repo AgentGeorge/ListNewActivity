@@ -7,6 +7,8 @@ import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.study4_listdetails.Core.Car;
+import com.example.study4_listdetails.MainApp;
 import com.example.study4_listdetails.R;
 
 public class DetailsActivity extends AppCompatActivity {
@@ -18,12 +20,16 @@ public class DetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        int imageID = intent.getIntExtra("imageID", 0);
-        String model = intent.getStringExtra("model");
-        String engineVolume = intent.getStringExtra("engineVolume");
-        String enginePower = intent.getStringExtra("enginePower");
-        String cost = intent.getStringExtra("cost");
-        int descID = intent.getIntExtra("descID", 0);
+        int position = intent.getIntExtra("position", 0);
+        MainPresenter mainPresenter = ((MainApp)getApplicationContext()).getMainPresenter();
+        Car car = mainPresenter.getCarByPosition(position);
+
+        int imageID = car.imageID;
+        String model = car.model;
+        String engineVolume = car.engineVolume;
+        String enginePower = car.enginePower;
+        String cost = car.cost;
+        int descID = car.descID;
 
         ImageView imageView = (ImageView) findViewById(R.id.imagePhoto);
         imageView.setImageResource(imageID);
