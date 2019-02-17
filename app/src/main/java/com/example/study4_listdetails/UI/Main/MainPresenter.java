@@ -1,9 +1,9 @@
-package com.example.study4_listdetails.UI;
+package com.example.study4_listdetails.UI.Main;
 
 import com.example.study4_listdetails.Core.Car;
 import com.example.study4_listdetails.Core.DbHelper;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MainPresenter {
     private DbHelper dbHelper;
@@ -14,7 +14,7 @@ public class MainPresenter {
     }
 
     public void setAdapterData() {
-        ArrayList<Car> cars = dbHelper.getCars();
+        List<Car> cars = dbHelper.getCars();
         view.refreshAdapterData(cars);
     }
 
@@ -26,7 +26,7 @@ public class MainPresenter {
         view = null;
     }
 
-    public Car getCarByPosition(int position) {
-        return dbHelper.getCarByPosition(position);
+    public Car getCarByPosition(int ID) {
+        return dbHelper.getCarByID(ID);
     }
 }

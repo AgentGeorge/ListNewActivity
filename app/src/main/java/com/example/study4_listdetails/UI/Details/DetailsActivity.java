@@ -1,4 +1,4 @@
-package com.example.study4_listdetails.UI;
+package com.example.study4_listdetails.UI.Details;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.study4_listdetails.Core.Car;
 import com.example.study4_listdetails.MainApp;
 import com.example.study4_listdetails.R;
+import com.example.study4_listdetails.UI.Main.MainPresenter;
 
 public class DetailsActivity extends AppCompatActivity {
 

@@ -2,8 +2,7 @@ package com.example.study4_listdetails;
 
 import android.app.Application;
 
-import com.example.study4_listdetails.Core.DbHelper;
-import com.example.study4_listdetails.UI.MainPresenter;
+import com.example.study4_listdetails.UI.Main.MainPresenter;
 
 public class MainApp extends Application {
     private MainPresenter mainPresenter;

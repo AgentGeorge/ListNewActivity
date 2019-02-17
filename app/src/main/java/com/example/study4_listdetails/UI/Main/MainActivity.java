@@ -1,17 +1,17 @@
-package com.example.study4_listdetails.UI;
+package com.example.study4_listdetails.UI.Main;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.example.study4_listdetails.Core.Car;
 import com.example.study4_listdetails.MainApp;
 import com.example.study4_listdetails.R;
+import com.example.study4_listdetails.UI.Details.DetailsActivity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements RecyclerAdapter.ItemClickListener, MainView {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.I
     }
 
     @Override
-    public void refreshAdapterData(ArrayList<Car> cars) {
+    public void refreshAdapterData(List<Car> cars) {
         mAdapter.setCars(cars);
         mAdapter.notifyDataSetChanged();
     }
