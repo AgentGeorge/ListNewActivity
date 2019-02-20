@@ -1,4 +1,4 @@
-package com.example.study4_listdetails.UI;
+package com.example.study4_listdetails.UI.Main;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,26 +9,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.study4_listdetails.Core.Car;
-import com.example.study4_listdetails.Core.DbHelper;
 import com.example.study4_listdetails.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private ArrayList<Car> cars;
+    private List<Car> cars;
     private ItemClickListener mClickListener;
     private LayoutInflater mInflater;
 
     public RecyclerAdapter(Context context) {
-        DbHelper dbHelper = new DbHelper();
         this.mInflater = LayoutInflater.from(context);
     }
 
-    public void setCars(ArrayList<Car> cars){
-        this.cars = cars;
+    public interface ItemClickListener {
+        void onItemClick(int ID);
     }
 
+    public void setCars(List<Car> cars){
+        this.cars = cars;
+        this.notifyDataSetChanged();
+    }
 
     //Создание новых View и ViewHolder элемента списка, которые впоследствии могут переиспользоваться.
     @Override
@@ -59,19 +61,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             icon = (ImageView) itemView.findViewById(R.id.imageView1);
-            icon.setOnClickListener(this);
             title = (TextView) itemView.findViewById(R.id.textView1);
-            title.setOnClickListener(this);
             desc = (TextView) itemView.findViewById(R.id.textView2);
-            desc.setOnClickListener(this);
         }
 
         //Обработчик нажатия на вьюхи в строке
         @Override
         public void onClick(View itemView) {
             if (mClickListener != null) {
-                mClickListener.onItemClick(getAdapterPosition());
+                mClickListener.onItemClick(cars.get(getAdapterPosition()).ID);
             }
         }
 
@@ -80,10 +80,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
-
-    public interface ItemClickListener {
-        void onItemClick(int position);
-    }
-
 
 }
