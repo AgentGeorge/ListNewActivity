@@ -23,11 +23,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         this.mInflater = LayoutInflater.from(context);
     }
 
+    public interface ItemClickListener {
+        void onItemClick(int ID);
+    }
+
     public void setCars(List<Car> cars){
         this.cars = cars;
         this.notifyDataSetChanged();
     }
-
 
     //Создание новых View и ViewHolder элемента списка, которые впоследствии могут переиспользоваться.
     @Override
@@ -58,20 +61,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            desc.setOnClickListener(itemView);
-//            icon = (ImageView) itemView.findViewById(R.id.imageView1);
-//            icon.setOnClickListener(this);
-//            title = (TextView) itemView.findViewById(R.id.textView1);
-//            title.setOnClickListener(this);
-//            desc = (TextView) itemView.findViewById(R.id.textView2);
-//            desc.setOnClickListener(this);
+            itemView.setOnClickListener(this);
+            icon = (ImageView) itemView.findViewById(R.id.imageView1);
+            title = (TextView) itemView.findViewById(R.id.textView1);
+            desc = (TextView) itemView.findViewById(R.id.textView2);
         }
 
         //Обработчик нажатия на вьюхи в строке
         @Override
         public void onClick(View itemView) {
             if (mClickListener != null) {
-                mClickListener.onItemClick(getAdapterPosition());
+                mClickListener.onItemClick(cars.get(getAdapterPosition()).ID);
             }
         }
 
@@ -80,10 +80,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
-
-    public interface ItemClickListener {
-        void onItemClick(int position);
-    }
-
 
 }
